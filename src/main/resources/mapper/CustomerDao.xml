@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eu.front.dao.CustomerDao">
+    <select id="queryCustomer" resultType="map">
+        SELECT * FROM tb_customer where customer_name like #{customerName} order by id DESC  LIMIT #{start}, #{end}
+    </select>
+    <select id="queryCustomerceInfo" resultType="map">
+        SELECT * FROM tb_customer  order by id DESC
+    </select>
+    <select id="queryCustomerCount" resultType="long">
+        SELECT count(1)
+        FROM tb_customer
+    </select>
+    <delete id="deleteCustomer" parameterType="string">
+        delete  from tb_customer where id =#{id}
+    </delete>
+
+    <update id="addCustomer" parameterType="Customer">
+        INSERT INTO tb_customer(customer_name,customer_sex,customer_age,customer_email,customer_phone,customer_company)
+        VALUES (#{customerName},#{customerSex},#{customerAge},#{customerEmail},#{customerPhone},#{customerCompany})
+    </update>
+</mapper>

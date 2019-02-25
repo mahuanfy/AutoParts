@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eu.front.dao.SteelDao">
+    <select id="querySteel" resultType="map">
+        SELECT * FROM tb_steel where steel_name like #{steelName} order by id DESC  LIMIT #{start}, #{end}
+    </select>
+    <select id="querySteelCount" resultType="long">
+        SELECT count(1)
+        FROM tb_steel
+    </select>
+    <delete id="deleteSteel" parameterType="string">
+        delete  from tb_steel where id =#{id}
+    </delete>
+    <update id="addSteel" parameterType="Steel">
+        INSERT INTO tb_steel(steel_version,steel_name,steel_price)
+        VALUES (#{steelVersion},#{steelName},#{steelPrice})
+    </update>
+    <select id="querySteelInfo" resultType="map">
+        SELECT * FROM tb_steel  order by id DESC
+    </select>
+</mapper>

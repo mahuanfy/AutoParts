@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eu.front.dao.RecoveryDao">
+    <select id="queryRecovery" resultType="map">
+        SELECT * FROM tb_recovery
+        LEFT JOIN (SELECT storage_code,storage_name FROM tb_storage) storage on storage.storage_code = tb_recovery.recovery_storage_id
+        LEFT JOIN (SELECT  steel_version,steel_name FROM tb_steel) steel on steel.steel_version = tb_recovery.recovery_steel_id
+        where recovery_code like #{recoveryCode}
+        order by  recovery_year DESC, recovery_month DESC ,recovery_day DESC LIMIT #{start}, #{end}
+    </select>
+
+    <select id="queryRecoveryCount" resultType="long">
+        SELECT count(1)
+        FROM tb_recovery
+    </select>
+    <update id="addRecovery" parameterType="Recovery">
+        INSERT INTO tb_recovery(recovery_year,recovery_month,recovery_day,recovery_code,recovery_steel_id,recovery_capacity,recovery_pirce,recovery_storage_id)
+        VALUES (#{recoveryYear},#{recoveryMonth},#{recoveryDay},#{recoveryCode},#{recoverySteelId},#{recoveryCapacity},#{recoveryPirce},#{recoveryStorageId})
+    </update>
+    <delete id="deleteRecovery" parameterType="string">
+        delete  from tb_recovery where id =#{id}
+    </delete>
+    <select id="findById" parameterType="string" resultType="Recovery">
+        SELECT * from tb_recovery where id=#{id}
+    </select>
+
+    <select id="queryRecoveryTen"  resultType="map">
+        SELECT * from tb_recovery order by  recovery_year DESC, recovery_month DESC ,recovery_day DESC  LIMIT 10
+    </select>
+
+    <select id="findRecover" resultType="map">
+        SELECT * from tb_recovery order by  recovery_year DESC, recovery_month DESC ,recovery_day DESC
+    </select>
+</mapper>

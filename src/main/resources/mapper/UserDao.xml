@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eu.front.dao.UserDao">
+
+    <select id="queryUser" resultType="map">
+        SELECT * FROM tb_admin where admin_realname like #{adminRealname} order by id DESC  LIMIT #{start}, #{end}
+    </select>
+
+    <select id="queryUserCount" resultType="long">
+        SELECT count(1)
+        FROM tb_admin
+    </select>
+    <update id="addUser" parameterType="Admin">
+        INSERT INTO tb_admin(admin_name,admin_password,admin_realname,admin_sex,admin_age,admin_rank,admin_phone,admin_date)
+        VALUES (#{adminName},#{adminPassword},#{adminRealname},#{adminSex},#{adminAge},#{adminRank},#{adminPhone},#{adminDate})
+    </update>
+    <delete id="deleteUser" parameterType="string">
+        delete  from tb_admin where id =#{id}
+    </delete>
+    <select id="findById" parameterType="int" resultType="Admin">
+        SELECT * from tb_admin where id=#{id}
+    </select>
+    <update id="updateUserInfo" parameterType="Admin">
+      UPDATE tb_admin
+        SET tb_admin.admin_realname = #{adminRealname},tb_admin.admin_sex=#{adminSex},
+        tb_admin.admin_age=#{adminAge},tb_admin.admin_phone=#{adminPhone},tb_admin.admin_rank=#{adminRank}
+        WHERE tb_admin.admin_name = #{adminName}
+    </update>
+</mapper>
