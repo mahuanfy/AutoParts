@@ -1,38 +1,28 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/page/tag.jsp" %>
-
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html >
 <head>
-    <title>汽车零配件销售管理系统</title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-
-    <link rel="stylesheet" type="text/css" href="${baseurl}/public/common/layui/css/layui.css" media="all">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" type="text/css" href="${baseurl}/public/css/login.css" media="all">
+    <title>汽车零配件销售管理系统</title>
 </head>
 <body>
-<div class="larry-canvas" id="canvas"></div>
-<div class="layui-layout layui-layout-login">
-    <h1 style="margin-left: -10px">
-        <strong>汽车零配件销售管理系统</strong>
-        <%--<em>Management System</em>--%>
-    </h1>
-    <div class="layui-user-icon larry-login">
-        <input type="text" placeholder="账号" id="userName" required class="login_txtbx"/>
+<div class="beijing">
+    <div class="bei2">
+        <div id="login">
+            <h1>汽车零配件销售管理系统</h1>
+                <input type="text" id="userName" required="required" placeholder="用户名"/>
+                <input type="password" id="password" required="required" placeholder="密码"/>
+                <button class="but" onclick="login()"  type="submit">登录</button>
+                <button  class="but"  type="reset">重置</button>
+        </div>
     </div>
-    <div class="layui-pwd-icon larry-login">
-        <input type="password" placeholder="密码" id="password" required class="login_txtbx"/>
-    </div>
-    <div class="layui-submit larry-login" style="margin-top: 20px;width:90%">
-        <button   onclick="login()"  class="submit_btn">立即登录</button>
-    </div>
-    <div class="layui-login-text">
-    </div>
-
 </div>
+</body>
 <script type="text/javascript" src="${baseurl}/public/common/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="${baseurl}/public/common/jsplugin/jparticle.jquery.js"></script>
 <script type="text/javascript" src="${baseurl}/public/js/login.js"></script>
-
 <script>
     function login() {
         let adminName = $("#userName").val();
@@ -46,7 +36,7 @@
                 } else {
                     layui.use('layer', function () {
                         var layer = layui.layer;
-                        layer.msg('登录失败:用户名或密码错误', {icon: 5, time: 2000});
+                        layer.msg('登录失败:用户名或密码错误', {icon: 5, time: 1000});
                     });
                 }
             }
@@ -54,5 +44,4 @@
     }
 
 </script>
-</body>
 </html>
