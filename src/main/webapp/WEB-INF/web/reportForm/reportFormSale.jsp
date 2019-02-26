@@ -34,7 +34,7 @@
                     <th>年份</th>
                     <th>月份</th>
                     <th>销售次数</th>
-                    <th>销售总重量</th>
+                    <th>销售总件数</th>
                     <th>总销售额</th>
                 </tr>
                 </thead>
@@ -102,17 +102,17 @@
                                         }
                                     }
                                     _html += "<td  >" + monthOnly[i] + "月 </td>" +
-                                        "<td>" + day + "次</td><td>" + capacity + "吨</td><td>" + pirce + "元</td></tr>";
+                                        "<td>" + day + "次</td><td>" + capacity + "件</td><td>" + pirce + "元</td></tr>";
                                     count += day;
                                     countCapacity += capacity;
                                     countPirce += pirce;
                                 }
-                                _html += "<tr style='background-color: rgb(239, 236, 236);'><td colspan='2'>小计：</td><td>" + count + "次</td><td>" + countCapacity + "吨</td><td>" + countPirce + "元</td></tr>"
+                                _html += "<tr style='background-color: rgb(239, 236, 236);'><td colspan='2'>小计：</td><td>" + count + "次</td><td>" + countCapacity + "件</td><td>" + countPirce + "元</td></tr>"
                                 sumCount += count;
                                 sumCountCapacity += countCapacity;
                                 sumCountPirce += countPirce;
                             }
-                            _html += "<tr style='background-color: rgb(239, 236, 236);'><td colspan='2'>总计：</td><td>" + sumCount + "次</td><td>" + sumCountCapacity + "吨</td><td>" + sumCountPirce + "元</td></tr>"
+                            _html += "<tr style='background-color: rgb(239, 236, 236);'><td colspan='2'>总计：</td><td>" + sumCount + "次</td><td>" + sumCountCapacity + "件</td><td>" + sumCountPirce + "元</td></tr>"
                         }
                         $("#tr_1").html(_html);
                     });

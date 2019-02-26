@@ -1,8 +1,8 @@
-package com.eu.front.web.steel;
+package com.eu.front.web.parts;
 
 import com.eu.front.dto.Result;
-import com.eu.front.entity.Steel;
-import com.eu.front.service.SteelService;
+import com.eu.front.entity.Parts;
+import com.eu.front.service.PartsService;
 import com.eu.front.utils.Constant;
 import com.eu.front.utils.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +15,18 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("Steel")
-public class SteelController {
+@RequestMapping("Parts")
+public class PartsController {
     @Autowired
-    private SteelService steelService;
+    private PartsService partsService;
 
-    @RequestMapping("/findSteel")
+    @RequestMapping("/findParts")
     @ResponseBody
-    public Map<String, Object> insertSteel(PageUtil page,String userName){
+    public Map<String, Object> insertParts(PageUtil page,String userName){
         Map<String, Object> data = new HashMap<String, Object>();
         List<Map<String,String>> info;
         try {
-            info = steelService.querySteel(page,userName);
+            info = partsService.queryParts(page,userName);
             data.put("info", info);
             data.put("page", page);
             data.put("result", true);
@@ -39,11 +39,11 @@ public class SteelController {
         return data;
     }
 
-    @RequestMapping("/addSteel")
+    @RequestMapping("/addParts")
     @ResponseBody
-    public Result addSteel(Steel steel) {
+    public Result addParts(Parts parts) {
         try {
-            steelService.addSteel(steel);
+            partsService.addParts(parts);
             return Result.success(null, Constant.ADD_SUCCESS);
         } catch (Exception e) {
             new RuntimeException(e);
@@ -52,12 +52,12 @@ public class SteelController {
         return Result.failure(null, Constant.ADD_FAILURE);
     }
 
-    @RequestMapping("/deleteSteel")
+    @RequestMapping("/deleteParts")
     @ResponseBody
-    public Map<String, Object> deleteSteel(String id) {
+    public Map<String, Object> deleteParts(String id) {
         Map<String, Object> result = new HashMap<String, Object>();
         try {
-            steelService.deleteSteel(id);
+            partsService.deleteParts(id);
             result.put("msg", Constant.DELETE_SUCCESS);
             result.put("result", true);
         } catch (Exception e) {

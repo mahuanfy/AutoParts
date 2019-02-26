@@ -1,4 +1,4 @@
-package com.eu.front.web.stock;
+package com.eu.front.web.parts;
 
 import com.eu.front.service.StockService;
 import com.eu.front.utils.Constant;

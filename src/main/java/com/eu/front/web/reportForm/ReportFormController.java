@@ -1,6 +1,6 @@
 package com.eu.front.web.reportForm;
 
-import com.eu.front.service.RecoveryService;
+import com.eu.front.service.PurchaseService;
 import com.eu.front.service.SaleService;
 import com.eu.front.utils.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class ReportFormController {
     @Autowired
     private SaleService saleService;
     @Autowired
-    private RecoveryService recoveryService;
+    private PurchaseService purchaseService;
 
     @RequestMapping("/findRecover")
     @ResponseBody
@@ -27,7 +27,7 @@ public class ReportFormController {
         List<Map<String,String>> Recover;
         List<Map<String,String>> Sale;
         try {
-            Recover = recoveryService.findRecover();
+            Recover = purchaseService.findRecover();
             Sale = saleService.findSale();
             data.put("Recover", Recover);
             data.put("Sale", Sale);

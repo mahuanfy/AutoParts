@@ -33,10 +33,10 @@
                 <tr>
                     <th>编号</th>
                     <th>日期</th>
-                    <th>本次回收编号</th>
-                    <th>回收钢铁类型</th>
-                    <th>回收钢铁总重量(单位：吨)</th>
-                    <th>回收单价(单位：元/吨)</th>
+                    <th>本次进货编号</th>
+                    <th>进货类型</th>
+                    <th>进货总件数(单位：件)</th>
+                    <th>进货单价(单位：元/件)</th>
                     <th>总额</th>
                 </tr>
                 </thead>
@@ -53,12 +53,12 @@
     {{# layui.each(d.info, function(index, item){}}
     <tr>
         <td>{{ index+1}}</td>
-        <td>{{item.recovery_year+"-"+item.recovery_month+"-"+item.recovery_day }}</td>
-        <th>{{item.recovery_code == undefined ? "暂无" : item.recovery_code}}</th>
-        <th>{{item.steel_name == undefined ? "暂无" : item.steel_name}}</th>
-        <th>{{item.recovery_capacity == undefined ? "暂无" : item.recovery_capacity+'吨'}}</th>
-        <th>{{item.recovery_pirce == undefined ? "暂无" : item.recovery_pirce+'元/吨'}}</th>
-        <th>{{"出账："+-parseInt(item.recovery_capacity) * parseInt(item.recovery_pirce)+"元"}}</th>
+        <td>{{item.purchase_year+"-"+item.purchase_month+"-"+item.purchase_day }}</td>
+        <th>{{item.purchase_code == undefined ? "暂无" : item.purchase_code}}</th>
+        <th>{{item.parts_name == undefined ? "暂无" : item.parts_name}}</th>
+        <th>{{item.purchase_capacity == undefined ? "暂无" : item.purchase_capacity+'件'}}</th>
+        <th>{{item.purchase_pirce == undefined ? "暂无" : item.purchase_pirce+'元/件'}}</th>
+        <th>{{"出账："+-parseInt(item.purchase_capacity) * parseInt(item.purchase_pirce)+"元"}}</th>
 
     {{# }); }}
 </script>
@@ -93,11 +93,11 @@
                 });
             },
             list: function () {
-                let recoveryCode ="";
-                $.post("${pageContext.request.contextPath}/Recovery/findRecovery", {
+                let purchaseCode ="";
+                $.post("${pageContext.request.contextPath}/Purchase/findPurchase", {
                         currentIndex: currentIndex,
                         pageSize: pageSize,
-                        userName: recoveryCode
+                        userName: purchaseCode
                     },
                     function (data) {
                         if (data.result) {

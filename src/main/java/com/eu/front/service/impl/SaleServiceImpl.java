@@ -36,12 +36,12 @@ public class SaleServiceImpl implements SaleService {
     public void addSale(Sale sale) throws Exception {
         saleDao.addSale(sale);
         Stock stock1 = stockDao.queryStockById(sale.getSaleStorageId());
-        //获取库存该仓库的重量
+        //获取库存该仓库的件数
         int stockCapacity = Integer.parseInt(stock1.getStockCapacity());
 
         Stock stock = new Stock();
         String capacity = String.valueOf((stockCapacity - Integer.parseInt(sale.getSaleCapacity())));
-        //仓库重量减去销售的重量
+        //仓库件数减去销售的件数
         stock.setStockCapacity(capacity);
         stock.setStockStorageId(sale.getSaleStorageId());
         stockDao.addStock(stock);
@@ -53,12 +53,12 @@ public class SaleServiceImpl implements SaleService {
         saleDao.deleteSale(id);
 
         Stock stock1 = stockDao.queryStockById(sale.getSaleStorageId());
-        //获取库存该仓库的重量
+        //获取库存该仓库的件数
         int stockCapacity = Integer.parseInt(stock1.getStockCapacity());
 
         Stock stock = new Stock();
         String capacity = String.valueOf((stockCapacity + Integer.parseInt(sale.getSaleCapacity())));
-        //仓库重量减去销售的重量
+        //仓库件数减去销售的件数
         stock.setStockCapacity(capacity);
         stock.setStockStorageId(sale.getSaleStorageId());
         stockDao.addStock(stock);

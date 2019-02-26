@@ -35,8 +35,8 @@
                     <th>编号</th>
                     <th>日期</th>
                     <th>本次销售编号</th>
-                    <th>销售钢铁总重量(单位：吨)</th>
-                    <th>销售单价(单位：元/吨)</th>
+                    <th>销售总件数(单位：件)</th>
+                    <th>销售单价(单位：元/件)</th>
                     <th>销售客户</th>
                     <th>总额</th>
                 </tr>
@@ -56,8 +56,8 @@
         <td>{{ index+1}}</td>
         <td>{{item.sale_year +"-"+item.sale_month+"-"+item.sale_day}}</td>
         <th>{{item.sale_code == undefined ? "暂无" : item.sale_code}}</th>
-        <th>{{item.sale_capacity == undefined ? "暂无" : item.sale_capacity+'吨'}}</th>
-        <th>{{item.sale_pirce == undefined ? "暂无" : item.sale_pirce+'元/吨'}}</th>
+        <th>{{item.sale_capacity == undefined ? "暂无" : item.sale_capacity+'件'}}</th>
+        <th>{{item.sale_pirce == undefined ? "暂无" : item.sale_pirce+'元/件'}}</th>
         <th>{{item.customer_name == undefined ? "暂无" : item.customer_name}}</th>
         <th>{{"进账：+"+parseInt(item.sale_capacity) * parseInt(item.sale_pirce)+"元"}}</th>
 

@@ -44,7 +44,7 @@
                     <th>编号</th>
                     <th>库存编号</th>
                     <th>仓库名称</th>
-                    <th>废钢重量（单位：吨）</th>
+                    <th>零配件件数（单位：件）</th>
                 </tr>
                 </thead>
                 <tbody class="tr_1">
@@ -62,7 +62,7 @@
         <td>{{ index+1}}</td>
         <th>{{item.stock_code == undefined ? "暂无" : 'KC00'+item.id}}</th>
         <th>{{item.storage_name == undefined ? "暂无" : item.storage_name}}</th>
-        <th>{{item.stock_capacity == undefined ? "暂无" : "剩余："+item.stock_capacity+"吨"}}</th>
+        <th>{{item.stock_capacity == undefined ? "暂无" : "剩余："+item.stock_capacity+"件"}}</th>
     </tr>
     {{# }); }}
 </script>

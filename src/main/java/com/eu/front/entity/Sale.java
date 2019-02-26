@@ -5,7 +5,7 @@ public class Sale {
     private String saleMonth;
     private String saleDay;
     private String saleCode;
-    private String saleSteelId;
+    private String salePartsId;
     private String saleCapacity;
     private String salePirce;
     private String saleCustomerId;//客户id
@@ -56,12 +56,12 @@ public class Sale {
         this.saleCode = saleCode;
     }
 
-    public String getSaleSteelId() {
-        return this.saleSteelId;
+    public String getSalePartsId() {
+        return this.salePartsId;
     }
 
-    public void setSaleSteelId(String saleSteelId) {
-        this.saleSteelId = saleSteelId;
+    public void setSalePartsId(String salePartsId) {
+        this.salePartsId = salePartsId;
     }
 
     public String getSaleCapacity() {

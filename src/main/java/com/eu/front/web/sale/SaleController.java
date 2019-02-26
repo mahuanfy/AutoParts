@@ -4,7 +4,7 @@ import com.eu.front.dto.Result;
 import com.eu.front.entity.Sale;
 import com.eu.front.service.CustomerService;
 import com.eu.front.service.SaleService;
-import com.eu.front.service.SteelService;
+import com.eu.front.service.PartsService;
 import com.eu.front.service.StorageService;
 import com.eu.front.utils.Constant;
 import com.eu.front.utils.PageUtil;
@@ -23,7 +23,7 @@ public class SaleController {
     @Autowired
     private SaleService saleService;
     @Autowired
-    private SteelService steelService;
+    private PartsService partsService;
     @Autowired
     private CustomerService customerService;
     @Autowired
@@ -81,10 +81,10 @@ public class SaleController {
     public Map<String, Object> foreignKey() {
         Map<String, Object> result = new HashMap<String, Object>();
         try {
-            List<Map<String,String>> steel = steelService.querySteelInfo();
+            List<Map<String,String>> parts = partsService.queryPartsInfo();
             List<Map<String,String>> customerce  = customerService.queryCustomerceInfo();
             List<Map<String,String>> storage  = storageService.queryStorageInfo();
-            result.put("steel", steel);
+            result.put("parts", parts);
             result.put("customerce", customerce);
             result.put("storage", storage);
             result.put("result", true);

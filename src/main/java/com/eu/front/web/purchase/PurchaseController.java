@@ -1,10 +1,10 @@
-package com.eu.front.web.recovery;
+package com.eu.front.web.purchase;
 
 import com.eu.front.dto.Result;
-import com.eu.front.entity.Recovery;
+import com.eu.front.entity.Purchase;
 import com.eu.front.service.CustomerService;
-import com.eu.front.service.RecoveryService;
-import com.eu.front.service.SteelService;
+import com.eu.front.service.PurchaseService;
+import com.eu.front.service.PartsService;
 import com.eu.front.service.StorageService;
 import com.eu.front.utils.Constant;
 import com.eu.front.utils.PageUtil;
@@ -18,24 +18,24 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("Recovery")
-public class RecoveryController {
+@RequestMapping("Purchase")
+public class PurchaseController {
     @Autowired
-    private RecoveryService recoveryService;
+    private PurchaseService purchaseService;
     @Autowired
-    private SteelService steelService;
+    private PartsService partsService;
     @Autowired
     private CustomerService customerService;
     @Autowired
     private StorageService storageService;
 
-    @RequestMapping("/findRecovery")
+    @RequestMapping("/findPurchase")
     @ResponseBody
-    public Map<String, Object> insertRecovery(PageUtil page,String userName){
+    public Map<String, Object> insertPurchase(PageUtil page,String userName){
         Map<String, Object> data = new HashMap<String, Object>();
         List<Map<String,String>> info;
         try {
-            info = recoveryService.queryRecovery(page,userName);
+            info = purchaseService.queryPurchase(page,userName);
             data.put("info", info);
             data.put("page", page);
             data.put("result", true);
@@ -48,11 +48,11 @@ public class RecoveryController {
         return data;
     }
 
-    @RequestMapping("/addRecovery")
+    @RequestMapping("/addPurchase")
     @ResponseBody
-    public Result addRecovery(Recovery recovery) {
+    public Result addPurchase(Purchase purchase) {
         try {
-            recoveryService.addRecovery(recovery);
+            purchaseService.addPurchase(purchase);
             return Result.success(null, Constant.ADD_SUCCESS);
         } catch (Exception e) {
             new RuntimeException(e);
@@ -61,12 +61,12 @@ public class RecoveryController {
         return Result.failure(null, Constant.ADD_FAILURE);
     }
 
-    @RequestMapping("/deleteRecovery")
+    @RequestMapping("/deletePurchase")
     @ResponseBody
-    public Map<String, Object> deleteRecovery(String id) {
+    public Map<String, Object> deletePurchase(String id) {
         Map<String, Object> result = new HashMap<String, Object>();
         try {
-            recoveryService.deleteRecovery(id);
+            purchaseService.deletePurchase(id);
             result.put("msg", Constant.DELETE_SUCCESS);
             result.put("result", true);
         } catch (Exception e) {
@@ -81,10 +81,10 @@ public class RecoveryController {
     public Map<String, Object> foreignKey() {
         Map<String, Object> result = new HashMap<String, Object>();
         try {
-            List<Map<String,String>> steel = steelService.querySteelInfo();
+            List<Map<String,String>> parts = partsService.queryPartsInfo();
             List<Map<String,String>> customerce  = customerService.queryCustomerceInfo();
             List<Map<String,String>> storage  = storageService.queryStorageInfo();
-            result.put("steel", steel);
+            result.put("parts", parts);
             result.put("customerce", customerce);
             result.put("storage", storage);
             result.put("result", true);

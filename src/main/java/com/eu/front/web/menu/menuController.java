@@ -22,9 +22,9 @@ public class menuController extends HttpServlet {
     }
 
     //汽车零配件类型
-    @RequestMapping("/steel")
-    public String steel() {
-        return "web/steel/steel";
+    @RequestMapping("/parts")
+    public String parts() {
+        return "web/parts/parts";
     }
 
     //仓库
@@ -44,14 +44,14 @@ public class menuController extends HttpServlet {
         return "web/sale/sale";
     }
 
-    @RequestMapping("/recovery")
-    public String recovery() {
-        return "web/recovery/recovery";
+    @RequestMapping("/purchase")
+    public String purchase() {
+        return "web/purchase/purchase";
     }
 
     @RequestMapping("/reckonRecover")
     public String reckonRecover() {
-        return "web/reckon/reckonRecovery";
+        return "web/reckon/reckonPurchase";
     }
 
     @RequestMapping("/reckonSale")
@@ -61,7 +61,7 @@ public class menuController extends HttpServlet {
 
     @RequestMapping("/findRecover")
     public String findRecover() {
-        return "web/reportForm/reportFormRecover";
+        return "web/reportForm/reportFormPurchase";
     }
 
     @RequestMapping("/findSale")

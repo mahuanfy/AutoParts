@@ -28,8 +28,8 @@
     <blockquote class="layui-elem-quote">
         <div class="layui-inline">
             <div class="layui-input-inline">
-                <input type="text" name="title" id="RecoveryName" lay-verify="title" autocomplete="off"
-                       placeholder="回收编号" class="layui-input">
+                <input type="text" name="title" id="PurchaseName" lay-verify="title" autocomplete="off"
+                       placeholder="进货编号" class="layui-input">
             </div>
             <a class="layui-btn" onclick="cl.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
 
@@ -40,7 +40,7 @@
     </blockquote>
 
     <fieldset class="layui-elem-field">
-        <legend>回收账单</legend>
+        <legend>进货账单</legend>
         <div style="margin: 20px;">
             <table class="site-table layui-table table-hover ">
                 <thead>
@@ -49,10 +49,10 @@
                     <th>年份</th>
                     <th>月份</th>
                     <th>日</th>
-                    <th>本次回收编号</th>
-                    <th>回收钢铁类型</th>
-                    <th>回收钢铁总重量(单位：吨)</th>
-                    <th>回收单价(单位：元/吨)</th>
+                    <th>本次进货编号</th>
+                    <th>进货类型</th>
+                    <th>进货总件数(单位：件)</th>
+                    <th>进货单价(单位：元/件)</th>
                     <th>所属仓库</th>
                     <th>操作</th>
                 </tr>
@@ -70,13 +70,13 @@
     {{# layui.each(d.info, function(index, item){ }}
     <tr>
         <td>{{ index+1}}</td>
-        <td>{{item.recovery_year == undefined ? "暂无" : item.recovery_year+"年"}}</td>
-        <th>{{item.recovery_month == undefined ? "暂无" : item.recovery_month+"月"}}</th>
-        <th>{{item.recovery_day == undefined ? "暂无" : item.recovery_day+"日"}}</th>
-        <th>{{item.recovery_code == undefined ? "暂无" : item.recovery_code}}</th>
-        <th>{{item.steel_name == undefined ? "暂无" : item.steel_name}}</th>
-        <th>{{item.recovery_capacity == undefined ? "暂无" : item.recovery_capacity+'吨'}}</th>
-        <th>{{item.recovery_pirce == undefined ? "暂无" : item.recovery_pirce+'元/吨'}}</th>
+        <td>{{item.purchase_year == undefined ? "暂无" : item.purchase_year+"年"}}</td>
+        <th>{{item.purchase_month == undefined ? "暂无" : item.purchase_month+"月"}}</th>
+        <th>{{item.purchase_day == undefined ? "暂无" : item.purchase_day+"日"}}</th>
+        <th>{{item.purchase_code == undefined ? "暂无" : item.purchase_code}}</th>
+        <th>{{item.parts_name == undefined ? "暂无" : item.parts_name}}</th>
+        <th>{{item.purchase_capacity == undefined ? "暂无" : item.purchase_capacity+'件'}}</th>
+        <th>{{item.purchase_pirce == undefined ? "暂无" : item.purchase_pirce+'元/件'}}</th>
         <th>{{item.storage_name == undefined ? "暂无" : item.storage_name}}</th>
         <td>
             <button data-id='1' data-opt='del' class='layui-btn layui-btn-danger layui-btn-small layui-icon'
@@ -96,7 +96,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label" style="width: 200px;">年份：</label>
                 <div class="layui-input-inline">
-                    <select name="recoveryYear" lay-filter="aihao" id="year_ten">
+                    <select name="purchaseYear" lay-filter="aihao" id="year_ten">
                         <option value="">请选择</option>
                     </select>
                 </div>
@@ -104,7 +104,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label" style="width: 200px;">月份：</label>
                 <div class="layui-input-inline">
-                    <select name="recoveryMonth" lay-filter="aihao">
+                    <select name="purchaseMonth" lay-filter="aihao">
                         <option value="1" selected="">1月份</option>
                         <option value="2">2月份</option>
                         <option value="3">3月份</option>
@@ -125,17 +125,17 @@
             <div class="layui-inline">
                 <label class="layui-form-label" style="width: 200px;">日：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="recoveryDay" autocomplete="off" class="layui-input"
+                    <input type="text" name="purchaseDay" autocomplete="off" class="layui-input"
                            placeholder="几号">
                 </div>
             </div>
 
 
             <div class="layui-inline">
-                <label class="layui-form-label" style="width: 200px;">本次回收编号：</label>
+                <label class="layui-form-label" style="width: 200px;">本次进货编号：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="recoveryCode" autocomplete="off" class="layui-input"
-                           placeholder="本次回收编号">
+                    <input type="text" name="purchaseCode" autocomplete="off" class="layui-input"
+                           placeholder="本次进货编号">
                 </div>
             </div>
 
@@ -143,33 +143,33 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-inline">
-                <label class="layui-form-label" style="width: 200px;">回收钢铁类型：</label>
+                <label class="layui-form-label" style="width: 200px;">进货类型：</label>
                 <div class="layui-input-inline">
-                    <select name="recoverySteelId" lay-filter="aihao" id="recoverySteelId">
+                    <select name="purchasePartsId" lay-filter="aihao" id="purchasePartsId">
                         <option value="">请选择</option>
                     </select>
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label" style="width: 200px;">回收钢铁总重量(单位：吨)：</label>
+                <label class="layui-form-label" style="width: 200px;">进货总件数(单位：件)：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="recoveryCapacity" autocomplete="off" class="layui-input"
-                           placeholder="回收钢铁总重量(单位：吨)">
+                    <input type="text" name="purchaseCapacity" autocomplete="off" class="layui-input"
+                           placeholder="进货总件数(单位：件)">
                 </div>
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-inline">
-                <label class="layui-form-label" style="width: 200px;">回收单价(单位：元/吨)：</label>
+                <label class="layui-form-label" style="width: 200px;">进货单价(单位：元/件)：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="recoveryPirce" autocomplete="off" class="layui-input"
-                           placeholder="回收单价(单位：元/吨)">
+                    <input type="text" name="purchasePirce" autocomplete="off" class="layui-input"
+                           placeholder="进货单价(单位：元/件)">
                 </div>
             </div>
             <div class="layui-inline">
                 <label class="layui-form-label" style="width: 200px;">所属仓库：</label>
                 <div class="layui-input-inline">
-                    <select name="recoveryStorageId" lay-filter="aihao" id="storageId">
+                    <select name="purchaseStorageId" lay-filter="aihao" id="storageId">
                         <option value="">请选择</option>
                     </select>
                 </div>
@@ -212,11 +212,11 @@
                 });
             },
             list: function () {
-                let recoveryCode = $("#RecoveryName").val();
-                $.post("${pageContext.request.contextPath}/Recovery/findRecovery", {
+                let purchaseCode = $("#PurchaseName").val();
+                $.post("${pageContext.request.contextPath}/Purchase/findPurchase", {
                         currentIndex: currentIndex,
                         pageSize: pageSize,
-                        userName: recoveryCode
+                        userName: purchaseCode
                     },
                     function (data) {
                         if (data.result) {
@@ -235,14 +235,14 @@
             addUser: function () {
                 layer.open({
                     type: 1,
-                    title: '添加回收账单'
+                    title: '添加进货账单'
                     , content: $("#addUser"),
                     area: ['100%', '100%']
                 });
             },
             addUserAjax: function () {
-                let recovery = $("#update-form").serialize();
-                $.post("${pageContext.request.contextPath}/Recovery/addRecovery", recovery, function (data) {
+                let purchase = $("#update-form").serialize();
+                $.post("${pageContext.request.contextPath}/Purchase/addPurchase", purchase, function (data) {
                     layer.msg(data.msg, {time: 500});
                     if (data.result) {
                         setTimeout("location.reload()", 1000);
@@ -252,7 +252,7 @@
             delete: function (id) {
                 layer.confirm('确定删除？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
-                    $.post("${pageContext.request.contextPath}/Recovery/deleteRecovery", {id: id},
+                    $.post("${pageContext.request.contextPath}/Purchase/deletePurchase", {id: id},
                         function (data) {
                             layer.msg(data.msg, {time: 500});
                             if (data.result) {
@@ -262,13 +262,13 @@
                 });
             },
             foreignKey: function () {
-                $.post("${pageContext.request.contextPath}/Recovery/foreignKey",
+                $.post("${pageContext.request.contextPath}/Purchase/foreignKey",
                     function (data) {
-                        $("#recoverySteelId").html("");
+                        $("#purchasePartsId").html("");
                         $("#customerId").html("");
                         $("#storageId").html("");
                         let customerce = data.customerce;
-                        let steel = data.steel;
+                        let parts = data.parts;
                         let storage = data.storage;
 
                         for (let i = 0; i < customerce.length; i++) {
@@ -277,8 +277,8 @@
                         for (let i = 0; i < storage.length; i++) {
                             $("#storageId").append(`<option value=` + storage[i].storage_code + `>` + storage[i].storage_name + `</option>`)
                         }
-                        for (let i = 0; i < steel.length; i++) {
-                            $("#recoverySteelId").append(`<option value=` + steel[i].steel_version + `>` + steel[i].steel_name + `</option>`)
+                        for (let i = 0; i < parts.length; i++) {
+                            $("#purchasePartsId").append(`<option value=` + parts[i].parts_version + `>` + parts[i].parts_name + `</option>`)
                         }
                         form.render();
                     });

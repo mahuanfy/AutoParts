@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page isELIgnored="false" %>
-<%@ include file="../../page/tag.jsp" %>
+<%@ include file="../../../page/tag.jsp" %>
 <!DOCTYPE html>
 <html>
 
@@ -28,8 +28,8 @@
     <blockquote class="layui-elem-quote">
         <div class="layui-inline">
             <div class="layui-input-inline">
-                <input type="text" name="title" id="steelName" lay-verify="title" autocomplete="off"
-                       placeholder="废钢名称" class="layui-input">
+                <input type="text" name="title" id="partsName" lay-verify="title" autocomplete="off"
+                       placeholder="零配件名称" class="layui-input">
             </div>
             <a class="layui-btn" onclick="cl.list()"><i class="layui-icon">&#xe615;</i>搜索</a>
 
@@ -40,15 +40,15 @@
     </blockquote>
 
     <fieldset class="layui-elem-field">
-        <legend>废钢信息</legend>
+        <legend>零配件信息</legend>
         <div style="margin: 20px;">
             <table class="site-table layui-table table-hover ">
                 <thead>
                 <tr>
                     <th>编号</th>
-                    <th>废钢类型编号</th>
-                    <th>废钢名称</th>
-                    <th>废钢价格(元/吨)</th>
+                    <th>零配件类型编号</th>
+                    <th>零配件名称</th>
+                    <th>零配件价格(元/件)</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -65,9 +65,9 @@
     {{# layui.each(d.info, function(index, item){ }}
     <tr>
         <td>{{ index+1}}</td>
-        <td>{{item.steel_version  == undefined ? "暂无" : item.steel_version}}</td>
-        <th>{{item.steel_name == undefined ? "暂无" : item.steel_name}}</th>
-        <th>{{item.steel_price == undefined ? "暂无" : item.steel_price}}</th>
+        <td>{{item.parts_version  == undefined ? "暂无" : item.parts_version}}</td>
+        <th>{{item.parts_name == undefined ? "暂无" : item.parts_name}}</th>
+        <th>{{item.parts_price == undefined ? "暂无" : item.parts_price}}</th>
         <td>
             <button data-id='1' data-opt='del' class='layui-btn layui-btn-danger layui-btn-small layui-icon'
                     onclick="cl.delete('{{item.id}}')">
@@ -84,26 +84,26 @@
 
         <div class="layui-form-item">
             <div class="layui-inline">
-                <label class="layui-form-label" style="width: 130px;">废钢类型编号：</label>
+                <label class="layui-form-label" style="width: 130px;">零配件类型编号：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="steelVersion" autocomplete="off" class="layui-input" placeholder="废钢类型编号">
+                    <input type="text" name="partsVersion" autocomplete="off" class="layui-input" placeholder="零配件类型编号">
                 </div>
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-inline">
-                <label class="layui-form-label" style="width: 130px;">废钢名称：</label>
+                <label class="layui-form-label" style="width: 130px;">零配件名称：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="steelName" autocomplete="off" class="layui-input" placeholder="废钢名称">
+                    <input type="text" name="partsName" autocomplete="off" class="layui-input" placeholder="零配件名称">
                 </div>
             </div>
         </div>
         <div class="layui-form-item">
             <div class="layui-inline">
-                <label class="layui-form-label" style="width: 130px;">废钢价格(元/吨)：</label>
+                <label class="layui-form-label" style="width: 130px;">零配件价格(元/件)：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="steelPrice" autocomplete="off" class="layui-input"
-                           placeholder="废钢价格(元/吨)">
+                    <input type="text" name="partsPrice" autocomplete="off" class="layui-input"
+                           placeholder="零配件价格(元/件)">
                 </div>
             </div>
         </div>
@@ -143,8 +143,8 @@
                 });
             },
             list: function () {
-                let userName = $("#steelName").val();
-                $.post("${pageContext.request.contextPath}/Steel/findSteel", {
+                let userName = $("#partsName").val();
+                $.post("${pageContext.request.contextPath}/Parts/findParts", {
                         currentIndex: currentIndex,
                         pageSize: pageSize,
                         userName:userName
@@ -166,14 +166,14 @@
             addUser: function () {
                 layer.open({
                     type: 1,
-                    title: '添加废钢'
+                    title: '添加零配件'
                     , content: $("#addUser"),
                     area: ['40%', '70%']
                 });
             },
             addUserAjax: function () {
-                let steel = $("#update-form").serialize();
-                $.post("${pageContext.request.contextPath}/Steel/addSteel", steel, function (data) {
+                let parts = $("#update-form").serialize();
+                $.post("${pageContext.request.contextPath}/Parts/addParts", parts, function (data) {
                     layer.msg(data.msg, {time: 500});
                     if (data.result) {
                         setTimeout("location.reload()", 1000);
@@ -183,7 +183,7 @@
             delete:function (id) {
                 layer.confirm('确定删除？', {icon: 3, title: '提示'}, function (index) {
                     layer.close(index);
-                    $.post("${pageContext.request.contextPath}/Steel/deleteSteel", {id: id},
+                    $.post("${pageContext.request.contextPath}/Parts/deleteParts", {id: id},
                         function (data) {
                             layer.msg(data.msg, {time: 500});
                             if (data.result) {

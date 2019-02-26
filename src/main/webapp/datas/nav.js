@@ -4,9 +4,9 @@ var navs = [{
     "href": "menu/Sale",
     "spread": false
 },{
-    "title": "回收账单",
+    "title": "进货账单",
     "icon": "fa fa-newspaper-o",
-    "href": "menu/recovery",
+    "href": "menu/purchase",
     "spread": false
 },{
     "title": "客户信息",
@@ -14,9 +14,9 @@ var navs = [{
     "href": "menu/customerce",
     "spread": false
 },{
-    "title": "废钢类型",
+    "title": "零配件类型",
     "icon": "fa fa-credit-card-alt",
-    "href": "menu/steel",
+    "href": "menu/parts",
     "spread": false
 },{
     "title": "仓库类型",
@@ -37,7 +37,7 @@ var navs = [{
         "icon": "fa fa-book",
         "href": "menu/findSale"
     }, {
-        "title": "回收报表",
+        "title": "进货报表",
         "icon": "&#xe63c;",
         "href": "menu/findRecover"
     }]

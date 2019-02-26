@@ -12,7 +12,7 @@ var navs = [{
         "icon": "&#xe63c;",
         "href": "menu/findSale"
     }, {
-        "title": "回收报表",
+        "title": "进货报表",
         "icon": "&#xe63c;",
         "href": "menu/findRecover"
     }]

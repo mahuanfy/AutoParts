@@ -48,7 +48,7 @@
                     <th>编号</th>
                     <th>仓库编号</th>
                     <th>仓库名称</th>
-                    <th>仓库最大废钢存储量(/吨)</th>
+                    <th>仓库最大零配件存储量(/件)</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -86,7 +86,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label" style="width: 130px;">仓库编号：</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="storageCode" autocomplete="off" class="layui-input" placeholder="废钢类型编号">
+                    <input type="text" name="storageCode" autocomplete="off" class="layui-input" placeholder="零配件类型编号">
                 </div>
             </div>
         </div>
@@ -100,10 +100,10 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-inline">
-                <label class="layui-form-label" style="width: 130px;">仓库最大废钢存储量(/吨)：</label>
+                <label class="layui-form-label" style="width: 130px;">仓库最大零配件存储量(/件)：</label>
                 <div class="layui-input-inline">
                     <input type="text" name="storageCapacity" autocomplete="off" class="layui-input"
-                           placeholder="仓库最大废钢存储量(/吨)">
+                           placeholder="仓库最大零配件存储量(/件)">
                 </div>
             </div>
         </div>

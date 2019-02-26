@@ -26,16 +26,16 @@
 <body>
 <div class="admin-main">
     <fieldset class="layui-elem-field">
-        <legend>回收报表统计</legend>
+        <legend>进货报表统计</legend>
         <div style="margin: 20px;">
             <table class="site-table layui-table table-hover ">
                 <thead>
                 <tr>
                     <th>年份</th>
                     <th>月份</th>
-                    <th>回收次数</th>
-                    <th>回收总重量</th>
-                    <th>总回收额</th>
+                    <th>进货次数</th>
+                    <th>进货总件数</th>
+                    <th>总进货额</th>
                 </tr>
                 </thead>
                 <tbody id="tr_1">
@@ -71,7 +71,7 @@
                             let sumCountCapacity = 0;//总计
                             let sumCountPirce = 0;//总计
                             for (let i = 0; i < data.Recover.length; i++) {
-                                year.push(data.Recover[i].recovery_year);
+                                year.push(data.Recover[i].purchase_year);
                             }
                             yearOnly = Array.from(new Set(year));
                             //选择月数
@@ -83,8 +83,8 @@
                                 let monthOnly;
                                 let month = [];
                                 for (let i = 0; i < data.Recover.length; i++) {
-                                    if (data.Recover[i].recovery_year == yearOnly[j]) {
-                                        month.push(data.Recover[i].recovery_month);
+                                    if (data.Recover[i].purchase_year == yearOnly[j]) {
+                                        month.push(data.Recover[i].purchase_month);
                                     }
                                 }
 
@@ -95,24 +95,24 @@
                                     let pirce = 0;
                                     let day = 0;
                                     for (let r = 0; r < data.Recover.length; r++) {
-                                        if (data.Recover[r].recovery_month == monthOnly[i] && data.Recover[r].recovery_year == yearOnly[j]) {
+                                        if (data.Recover[r].purchase_month == monthOnly[i] && data.Recover[r].purchase_year == yearOnly[j]) {
                                             day++;
-                                            capacity += parseInt(data.Recover[r].recovery_capacity);
-                                            pirce += parseInt(data.Recover[r].recovery_capacity) * parseInt(data.Recover[r].recovery_pirce)
+                                            capacity += parseInt(data.Recover[r].purchase_capacity);
+                                            pirce += parseInt(data.Recover[r].purchase_capacity) * parseInt(data.Recover[r].purchase_pirce)
                                         }
                                     }
                                     _html += "<td  >" + monthOnly[i] + "月 </td>" +
-                                        "<td>" + day + "次</td><td>" + capacity + "吨</td><td>" + pirce + "元</td></tr>";
+                                        "<td>" + day + "次</td><td>" + capacity + "件</td><td>" + pirce + "元</td></tr>";
                                     count += day;
                                     countCapacity += capacity;
                                     countPirce += pirce;
                                 }
-                                _html += "<tr style='background-color: rgb(239, 236, 236);'><td colspan='2'>小计：</td><td>" + count + "次</td><td>" + countCapacity + "吨</td><td>" + countPirce + "元</td></tr>"
+                                _html += "<tr style='background-color: rgb(239, 236, 236);'><td colspan='2'>小计：</td><td>" + count + "次</td><td>" + countCapacity + "件</td><td>" + countPirce + "元</td></tr>"
                                 sumCount += count;
                                 sumCountCapacity += countCapacity;
                                 sumCountPirce += countPirce;
                             }
-                            _html += "<tr style='background-color: rgb(239, 236, 236);'><td colspan='2'>总计：</td><td>" + sumCount + "次</td><td>" + sumCountCapacity + "吨</td><td>" + sumCountPirce + "元</td></tr>"
+                            _html += "<tr style='background-color: rgb(239, 236, 236);'><td colspan='2'>总计：</td><td>" + sumCount + "次</td><td>" + sumCountCapacity + "件</td><td>" + sumCountPirce + "元</td></tr>"
                         }
                         $("#tr_1").html(_html);
                     });

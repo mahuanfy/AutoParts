@@ -1,6 +1,6 @@
 package com.eu.front.web.main;
 
-import com.eu.front.dao.RecoveryDao;
+import com.eu.front.dao.PurchaseDao;
 import com.eu.front.dao.SaleDao;
 import com.eu.front.dao.StockDao;
 import com.eu.front.dto.Result;
@@ -23,7 +23,7 @@ import java.util.Map;
 @RequestMapping("MainController")
 public class MainController {
     @Autowired
-    RecoveryDao recoveryDao;
+    PurchaseDao purchaseDao;
     @Autowired
     private SaleDao saleDao;
 
@@ -32,12 +32,12 @@ public class MainController {
     public Map<String, Object> findMainController(){
         Map<String, Object> data = new HashMap<String, Object>();
         List<Map<String,String>> sale;
-        List<Map<String,String>> recovery;
+        List<Map<String,String>> purchase;
         try {
             sale = saleDao.querySaleTen();
-            recovery = recoveryDao.queryRecoveryTen();
+            purchase = purchaseDao.queryPurchaseTen();
             data.put("sale", sale);
-            data.put("recovery", recovery);
+            data.put("purchase", purchase);
             data.put("result", true);
             data.put("msg", Constant.SEARCH_SUCCESS);
         } catch (Exception e) {

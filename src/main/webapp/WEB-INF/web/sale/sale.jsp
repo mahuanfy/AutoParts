@@ -50,8 +50,8 @@
                     <th>月份</th>
                     <th>日</th>
                     <th>本次销售编号</th>
-                    <th>销售钢铁总重量(单位：吨)</th>
-                    <th>销售单价(单位：元/吨)</th>
+                    <th>销售总件数(单位：件)</th>
+                    <th>销售单价(单位：元/件)</th>
                     <th>销售客户</th>
                     <th>所属仓库</th>
                     <th>操作</th>
@@ -74,8 +74,8 @@
         <th>{{item.sale_month == undefined ? "暂无" : item.sale_month+"月"}}</th>
         <th>{{item.sale_day == undefined ? "暂无" : item.sale_day+"日"}}</th>
         <th>{{item.sale_code == undefined ? "暂无" : item.sale_code}}</th>
-        <th>{{item.sale_capacity == undefined ? "暂无" : item.sale_capacity+'吨'}}</th>
-        <th>{{item.sale_pirce == undefined ? "暂无" : item.sale_pirce+'元/吨'}}</th>
+        <th>{{item.sale_capacity == undefined ? "暂无" : item.sale_capacity+'件'}}</th>
+        <th>{{item.sale_pirce == undefined ? "暂无" : item.sale_pirce+'元/件'}}</th>
         <th>{{item.customer_name == undefined ? "暂无" : item.customer_name}}</th>
         <th>{{item.storage_name == undefined ? "暂无" : item.storage_name}}</th>
         <td>
@@ -141,18 +141,18 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-inline">
-                <label class="layui-form-label" style="width: 200px;">销售钢铁总重量(单位：吨)：</label>
+                <label class="layui-form-label" style="width: 200px;">销售总件数(单位：件)：</label>
                 <div class="layui-input-inline">
                     <input type="text" name="saleCapacity" autocomplete="off" class="layui-input"
-                           placeholder="销售钢铁总重量(单位：吨)">
+                           placeholder="销售总件数(单位：件)">
                 </div>
             </div>
 
             <div class="layui-inline">
-                <label class="layui-form-label" style="width: 200px;">销售单价(单位：元/吨)：</label>
+                <label class="layui-form-label" style="width: 200px;">销售单价(单位：元/件)：</label>
                 <div class="layui-input-inline">
                     <input type="text" name="salePirce" autocomplete="off" class="layui-input"
-                           placeholder="销售单价(单位：元/吨)">
+                           placeholder="销售单价(单位：元/件)">
                 </div>
             </div>
         </div>
@@ -264,12 +264,12 @@
             foreignKey: function () {
                 $.post("${pageContext.request.contextPath}/Sale/foreignKey",
                     function (data) {
-                        $("#saleSteelId").html("");
+                        $("#salePartsId").html("");
                         $("#customerId").html("");
                         $("#storageId").html("");
                         console.log(data)
                         let customerce = data.customerce;
-                        let steel = data.steel;
+                        let parts = data.parts;
                         let storage = data.storage;
 
                         for (let i = 0; i < customerce.length; i++) {
@@ -278,8 +278,8 @@
                         for (let i = 0; i < storage.length; i++) {
                             $("#storageId").append(`<option value=` + storage[i].storage_code + `>` + storage[i].storage_name + `</option>`)
                         }
-                        for (let i = 0; i < steel.length; i++) {
-                            $("#saleSteelId").append(`<option value=` + steel[i].steel_version + `>` + steel[i].steel_name + `</option>`)
+                        for (let i = 0; i < parts.length; i++) {
+                            $("#salePartsId").append(`<option value=` + parts[i].parts_version + `>` + parts[i].parts_name + `</option>`)
                         }
                         form.render();
                     });

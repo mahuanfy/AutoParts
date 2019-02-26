@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eu.front.dao.PurchaseDao">
+    <select id="queryPurchase" resultType="map">
+        SELECT * FROM tb_purchase
+        LEFT JOIN (SELECT storage_code,storage_name FROM tb_storage) storage on storage.storage_code = tb_purchase.purchase_storage_id
+        LEFT JOIN (SELECT  parts_version,parts_name FROM tb_parts) parts on parts.parts_version = tb_purchase.purchase_parts_id
+        where purchase_code like #{purchaseCode}
+        order by  purchase_year DESC, purchase_month DESC ,purchase_day DESC LIMIT #{start}, #{end}
+    </select>
+
+    <select id="queryPurchaseCount" resultType="long">
+        SELECT count(1)
+        FROM tb_purchase
+    </select>
+    <update id="addPurchase" parameterType="Purchase">
+        INSERT INTO tb_purchase(purchase_year,purchase_month,purchase_day,purchase_code,purchase_parts_id,purchase_capacity,purchase_pirce,purchase_storage_id)
+        VALUES (#{purchaseYear},#{purchaseMonth},#{purchaseDay},#{purchaseCode},#{purchasePartsId},#{purchaseCapacity},#{purchasePirce},#{purchaseStorageId})
+    </update>
+    <delete id="deletePurchase" parameterType="string">
+        delete  from tb_purchase where id =#{id}
+    </delete>
+    <select id="findById" parameterType="string" resultType="Purchase">
+        SELECT * from tb_purchase where id=#{id}
+    </select>
+
+    <select id="queryPurchaseTen"  resultType="map">
+        SELECT * from tb_purchase order by  purchase_year DESC, purchase_month DESC ,purchase_day DESC  LIMIT 10
+    </select>
+
+    <select id="findRecover" resultType="map">
+        SELECT * from tb_purchase order by  purchase_year DESC, purchase_month DESC ,purchase_day DESC
+    </select>
+</mapper>

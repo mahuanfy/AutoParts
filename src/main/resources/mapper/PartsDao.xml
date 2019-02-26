@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eu.front.dao.PartsDao">
+    <select id="queryParts" resultType="map">
+        SELECT * FROM tb_parts where parts_name like #{partsName} order by id DESC  LIMIT #{start}, #{end}
+    </select>
+    <select id="queryPartsCount" resultType="long">
+        SELECT count(1)
+        FROM tb_parts
+    </select>
+    <delete id="deleteParts" parameterType="string">
+        delete  from tb_parts where id =#{id}
+    </delete>
+    <update id="addParts" parameterType="Parts">
+        INSERT INTO tb_parts(parts_version,parts_name,parts_price)
+        VALUES (#{partsVersion},#{partsName},#{partsPrice})
+    </update>
+    <select id="queryPartsInfo" resultType="map">
+        SELECT * FROM tb_parts  order by id DESC
+    </select>
+</mapper>
